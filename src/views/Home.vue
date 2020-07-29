@@ -13,7 +13,7 @@
     </form>
     <br>
     <br>
-      <div class="container">
+      <div class="container box">
         <table class="table is-striped is-hoverable is-narrow">
           <thead>
             <tr>
@@ -24,7 +24,7 @@
           </thead>
           <tbody>
             <tr v-for="(task, index) in taskList" :key="index">
-              <td>Task:  {{ task }}
+              <td>{{ task }}
               </td>
               <td>
                 <button @click="removeTask(task)">

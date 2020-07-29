@@ -31,4 +31,8 @@
     }
   }
 }
+
+.box {
+  background-color: aliceblue;
+}
 </style>
