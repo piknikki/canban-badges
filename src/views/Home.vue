@@ -51,8 +51,19 @@ export default {
     return {
       newTask: '',
       taskList: [
-        'do one thing',
-        'do another thing'
+        'update the profile website regularly',
+        'fix this to-do list with delete and edit buttons',
+        'mood picker that uses emojis',
+        'wall of quotes with drag and drop capability',
+        'website for Vera\'s work',
+        'random FontAwesome picker for no reason whatsoever',
+        'what about revisiting Socially Awkward Gorilla?',
+        'skills/progress bar display, maybe rainbow colors like the titles here',
+        '404 page (make it funny)',
+        'toggle set that uses conditionals',
+        'cookies popover',
+        'authentication (maybe for Socially Awkward Gorilla)',
+        'do something with Firebase'
       ]
     }
   },
