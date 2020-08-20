@@ -1,8 +1,7 @@
 <template>
-  <div class="home">
-    <div class="container">
+  <div class="home has-text-centered">
     <form @submit.prevent="addTask">
-<!--      <label for="task">Task: </label>-->
+      <!--      <label for="task">Task: </label>-->
       <input
              v-model="newTask"
              placeholder="Add a new task"
@@ -13,7 +12,8 @@
     </form>
     <br>
     <br>
-      <div class="container box">
+    <div class="columns is-centered">
+      <div class=" column is-half box task-box">
         <table class="table is-striped is-hoverable is-narrow">
           <thead>
             <tr>
@@ -85,16 +85,25 @@ export default {
 </script>
 
 <style>
-  input, button {
-    line-height: 2;
-    font-size: large;
-  }
 
-  button {
-    margin: 10px;
-  }
+.task-box {
+  margin: 0 auto;
+}
 
-  i {
-    padding: 0 5px;
-  }
+.home {
+  text-align: center;
+}
+
+input, button {
+  line-height: 2;
+  font-size: large;
+}
+
+button {
+  margin: 10px;
+}
+
+i {
+  padding: 0 5px;
+}
 </style>
