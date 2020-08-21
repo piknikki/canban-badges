@@ -3,7 +3,7 @@
     <form @submit.prevent="addTask">
       <!--      <label for="task">Task: </label>-->
       <input
-             v-model="newTask"
+             v-model="title"
              placeholder="Add a new task"
              required
       />
@@ -12,31 +12,9 @@
     </form>
     <br>
     <br>
-    <div class="columns is-centered">
-      <div class=" column is-half box task-box">
-        <table class="table is-striped is-hoverable is-narrow">
-          <thead>
-            <tr>
-              <th>Task</th>
-              <th>Delete</th>
-              <th>Edit</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(task, index) in taskList" :key="index">
-              <td>{{ task }}
-              </td>
-              <td>
-                <button @click="removeTask(task)">
-                  <span class="icon"><i class="fal fa-space-station-moon-alt"> </i> </span></button>
-              </td>
-              <td>
-                <button @click="editTask(task)">
-                  <span class="icon"><i class="fal fa-jedi"></i> </span></button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="columns is-mobile is-centered">
+      <div class=" column is-half box task-box is-centered">
+        <Todos v-if="taskList" v-bind:taskList="taskList"></Todos>
       </div>
     </div>
   </div>
@@ -44,34 +22,98 @@
 
 <script>
 // @ is an alias to /src
+import { v4 as uuidv4 } from 'uuid'
+import Todos from '@/components/Todos'
+// import axios from 'axios'  uncomment this to use the jsonplaceholder api call in methods
 
 export default {
   name: 'Home',
+  components: {
+    Todos
+  },
   data () {
     return {
-      newTask: '',
+      // newTask: '',
+      title: '',
       taskList: [
-        'update the profile website regularly',
-        'fix this to-do list with delete and edit buttons',
-        'mood picker that uses emojis',
-        'wall of quotes with drag and drop capability',
-        'website for Vera\'s work',
-        'random FontAwesome picker for no reason whatsoever',
-        'what about revisiting Socially Awkward Gorilla?',
-        'skills/progress bar display, maybe rainbow colors like the titles here',
-        '404 page (make it funny)',
-        'toggle set that uses conditionals',
-        'cookies popover',
-        'authentication (maybe for Socially Awkward Gorilla)',
-        'do something with Firebase'
+        {
+          id: 1,
+          title: 'update the profile website regularly',
+          completed: true
+        },
+        {
+          id: 2,
+          title: 'put edit button and functionality',
+          completed: false
+        },
+        {
+          id: 3,
+          title: 'mood picker that uses emojis',
+          completed: false
+        },
+        {
+          id: 4,
+          title: 'wall of quotes with drag and drop capability',
+          completed: false
+        },
+        {
+          id: 5,
+          title: 'website for Vera\'s work',
+          completed: false
+        },
+        {
+          id: 6,
+          title: 'random FontAwesome picker for no reason whatsoever',
+          completed: true
+        },
+        {
+          id: 7,
+          title: 'what about revisiting Socially Awkward Gorilla?',
+          completed: false
+        },
+        {
+          id: 8,
+          title: 'skills/progress bar display, maybe rainbow colors like the titles here',
+          completed: true
+        },
+        {
+          id: 9,
+          title: '404 page (make it funny)',
+          completed: true
+        },
+        {
+          id: 10,
+          title: 'toggle set that uses conditionals',
+          completed: false
+        },
+        {
+          id: 11,
+          title: 'authentication (maybe for Socially Awkward Gorilla)',
+          completed: false
+        },
+        {
+          id: 12,
+          title: 'do something with Firebase',
+          completed: true
+        },
+        {
+          id: 13,
+          title: 'cookies popover',
+          completed: false
+        }
       ]
     }
   },
   methods: {
     addTask () {
+      const newTask = {
+        id: uuidv4(),
+        title: this.title,
+        completed: false
+      }
       // add the task to the list
-      this.taskList.push(this.newTask)
-      this.newTask = ''
+      this.taskList.unshift(newTask)
+      this.title = ''
     },
     removeTask: function (task) {
       this.taskList.splice(task, 1)
@@ -81,12 +123,20 @@ export default {
       // put in the new task -- where is the new task coming from? need input field
     }
   }
+  // this will pull in a bunch of fake tasks from a jsonplaceholder website
+  // created () {
+  //   axios.get('https://jsonplaceholder.typicode.com/todos')
+  //     .then(response => {
+  //       this.taskList = response.data
+  //     })
+  //     .catch(err => console.log(err))
+  // }
 }
 </script>
 
 <style>
 
-.task-box {
+.table {
   margin: 0 auto;
 }
 
